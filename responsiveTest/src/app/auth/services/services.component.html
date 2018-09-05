@@ -1,3 +1,13 @@
-<p>
-  services works!
-</p>
+<h2>Magnitud Mínima </h2>
+<input type="number" (keyup)="onNameKeyUp($event)">
+<button (click)="getData()"> Get it</button>
+
+
+<div *ngIf="found">
+    <h2>Temblores de magnitud mínima de {{magnitude}}</h2>
+    <ul>
+      <li 
+        *ngFor="let eq of earthquakes"> {{eq['properties'].place}}, con magnitud de {{eq['properties'].mag}}
+      </li>
+    </ul>
+</div>

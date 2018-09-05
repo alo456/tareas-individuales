@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedRoutingModule } from './shared-routing.module';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { AuthModule } from 'src/app/auth/auth.module'
+import { HttpClientModule }    from '@angular/common/http';
 
 
 @NgModule({
@@ -18,7 +20,10 @@ import { AuthModule } from 'src/app/auth/auth.module'
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    AuthModule
+    AuthModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports:[
     MainNavComponent

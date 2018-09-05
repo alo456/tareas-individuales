@@ -9,9 +9,9 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/home"  (click)= "showFiller=1">Home</a>
-      <a mat-list-item routerLink="/services" (click)= "showFiller=2">Servicios</a>
-      <a mat-list-item routerLink="/contact" (click)= "showFiller=3">Contacto</a>
+      <a mat-list-item routerLink="/home">Home</a>
+      <a mat-list-item routerLink="/services">Servicios</a>
+      <a mat-list-item routerLink="/contact">Contacto</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -28,19 +28,7 @@
     </mat-toolbar>
     
     <!-- Add Content Here -->
-    <h1 *ngIf="showFiller==1"> Bienvenido</h1>
-    <ul *ngIf="showFiller==2">
-        <h1>Servicios</h1>
-        <li>Standard</li>
-        <li>Special</li>
-        <li>Custom</li>
-    </ul> 
-    <div *ngIf="showFiller==3"> 
-      <h1>Contacto</h1>
-      <p>951 277-63-92</p>     
-
-    </div>
-
+    <router-outlet></router-outlet>
     <ng-content></ng-content>
     
    
