@@ -6,12 +6,16 @@ import { HomeComponent } from './home/home.component';
 import { ServicesComponent } from './services/services.component';
 import { ContactComponent } from './contact/contact.component';
 import { SharedRoutingModule } from 'src/app/shared/shared-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports:[
     AuthRoutingModule

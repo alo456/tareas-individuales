@@ -1,13 +1,43 @@
-<h2>Magnitud Mínima </h2>
-<input type="number" (keyup)="onNameKeyUp($event)">
-<button (click)="getData()"> Get it</button>
+<form [formGroup]="eqForm" (ngSubmit)="submit()" novalidate>
+    <div class="form-container">
+        <div class="row columns">
+            <h1>Busca Sismos</h1>
+            <label>Magnitud Mínima
+              <input type="number" class="form-control" formControlName="Magnitud">
+            </label>
+  
+            <label>Desde 
+              <input type="date"  formControlName="Inicio">
+            </label>
+  
+            <label>Hasta
+              <input type="date"  formControlName="Fin">
+            </label>    
+  
+            <div *ngIf="eqForm.get('Magnitud').errors" class="alert alert-danger">
+              <div *ngIf="eqForm.get('Magnitud').errors['required']">
+                Magnitud Requerida
+              </div>
+            </div>
+            <button type="submit" class="button expanded" [disabled]="!eqForm.valid">Consultar</button>            
+        </div>
+    </div>
+  </form>
 
 
-<div *ngIf="found">
-    <h2>Temblores de magnitud mínima de {{magnitude}}</h2>
-    <ul>
-      <li 
-        *ngFor="let eq of earthquakes"> {{eq['properties'].place}}, con magnitud de {{eq['properties'].mag}}
-      </li>
-    </ul>
-</div>
+  <div class = "mat-elevation-z8" *ngIf="found">
+      <h2>Temblores de magnitud mínima de {{mag}}</h2>
+      <table>
+        <tr>
+          <th>Lugar</th>
+          <th>Magnitud</th>
+          <th>Fecha</th>
+        </tr>
+        <tr *ngFor="let item of eqs | paginate: {itemsPerPage:10, currentPage:p}">
+          <td> {{item['properties'].place}} </td> 
+          <td> {{item['properties'].mag}} </td>
+          <td> {{item['properties'].time | date}} </td>
+        </tr>
+        <pagination-controls (pageChange)="p =$event"> </pagination-controls>
+      </table>
+  </div>
