@@ -8,6 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { SharedRoutingModule } from 'src/app/shared/shared-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AuthRoutingModule,
     SharedRoutingModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDk07aGoXNk2JpxvarPSgN1hIGA5JwZpMU'
+    })
   ],
   exports:[
     AuthRoutingModule

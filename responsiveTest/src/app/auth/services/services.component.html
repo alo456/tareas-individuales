@@ -5,27 +5,31 @@
             <label>Magnitud Mínima
               <input type="number" class="form-control" formControlName="Magnitud">
             </label>
-  
+            <div class="alert" *ngIf="!eqForm.controls['Magnitud'].valid && eqForm.controls['Magnitud'].touched">
+              Magnitud Mínima requerida
+            </div>
+
             <label>Desde 
               <input type="date"  formControlName="Inicio">
             </label>
-  
+            <div class="alert" *ngIf="!eqForm.controls['Inicio'].valid && eqForm.controls['Inicio'].touched">
+              Fecha de Inicio requerida
+            </div>
+
             <label>Hasta
               <input type="date"  formControlName="Fin">
             </label>    
-  
-            <div *ngIf="eqForm.get('Magnitud').errors" class="alert alert-danger">
-              <div *ngIf="eqForm.get('Magnitud').errors['required']">
-                Magnitud Requerida
-              </div>
+            <div class="alert" *ngIf="!eqForm.controls['Fin'].valid && eqForm.controls['Fin'].touched">
+              Fecha Final requerida
             </div>
+
             <button type="submit" class="button expanded" [disabled]="!eqForm.valid">Consultar</button>            
         </div>
     </div>
   </form>
 
 
-  <div class = "mat-elevation-z8" *ngIf="found">
+  <div class = "mat-elevation-z8" *ngIf="found; else noEqs">
       <h2>Temblores de magnitud mínima de {{mag}}</h2>
       <table>
         <tr>
@@ -40,4 +44,19 @@
         </tr>
         <pagination-controls (pageChange)="p =$event"> </pagination-controls>
       </table>
+
+      <h3>Ubicaciones</h3>
+      <agm-map [latitude]= "eqs[0]['geometry']['coordinates'][1]" [longitude] = "eqs[0]['geometry']['coordinates'][0]" [gestureHandling]="cooperative">
+        <agm-marker *ngFor="let eq of eqs" [latitude]= "eq['geometry']['coordinates'][1]" [longitude] = "eq['geometry']['coordinates'][0]" ></agm-marker>
+      </agm-map>
+
   </div>
+
+  
+  <ng-template #noEqs >
+    <div class="mat-elevation-z8">
+      <h2>{{message}}</h2>
+    </div>
+  </ng-template>
+
+

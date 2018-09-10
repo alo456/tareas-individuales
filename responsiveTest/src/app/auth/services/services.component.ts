@@ -16,6 +16,11 @@ export class ServicesComponent implements OnInit {
   eqs:any[];
   found:boolean = false;
   query:string='';
+  message:string='';
+
+
+  latitude:number = 17.0654200;
+  longitude:number = -96.7236500;
 
   constructor(private fb: FormBuilder,private httpClient:HttpClient) { 
     this.buildForm();
@@ -51,6 +56,7 @@ export class ServicesComponent implements OnInit {
   getData(){
     this.found = false;
     this.eqs=[];
+    this.message = '';
     this.query = 'starttime='+ this.startDate + '&endtime=' + this.endDate + '&minmagnitude=' + this.mag;
     //console.log(this.query);
     this.httpClient.get(this.url+this.query+'&orderby=magnitude')
@@ -61,7 +67,8 @@ export class ServicesComponent implements OnInit {
           this.found = true;
           this.eqs=data;
           console.log(data);
-        }            
+        }
+        else this.message = "No se encontraron resultados :(";            
       }
     )
   }

@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) { 
     this.getToday();
+    this.getMonth();
     this.getData();
 
   }
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
       }
     )
     this.query = 'starttime='+ this.begMonth + '&endtime=' + this.today + '&minmagnitude=5&orderby=magnitude';
+    console.log(this.query);
     this.httpClient.get(this.url+this.query)
     .subscribe(
       (data:any[]) =>{
@@ -91,5 +93,6 @@ export class HomeComponent implements OnInit {
     var finalDate = yyyy + '-' + month + '-' + day;
     return finalDate;
   }
+  
 
 }

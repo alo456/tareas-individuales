@@ -26,6 +26,9 @@ h1 {
     font-size: 2em;
 }
 
+agm-map{
+    height: 500px;
+}
 
 @keyframes alertAnim {
     from {
