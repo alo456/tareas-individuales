@@ -8,6 +8,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { AuthModule } from 'src/app/auth/auth.module'
 import { HttpClientModule }    from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -26,8 +27,8 @@ import { HttpClientModule }    from '@angular/common/http';
     ReactiveFormsModule
   ],
   exports:[
-    MainNavComponent
+    MainNavComponent, FooterComponent
   ],
-  declarations: [MainNavComponent]
+  declarations: [MainNavComponent, FooterComponent]
 })
 export class SharedModule { }

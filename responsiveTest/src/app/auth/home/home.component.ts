@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { EqUsgsService } from 'src/app/eq-service/eq-usgs.service';
 
 @Component({
   selector: 'app-home',
@@ -24,9 +24,7 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private httpClient: HttpClient) { 
-    this.getToday();
-    this.getMonth();
+  constructor(private eqService:EqUsgsService) { 
     this.getData();
 
   }
@@ -37,8 +35,7 @@ export class HomeComponent implements OnInit {
   getData(){
     this.found = false;
     this.earthquakes=[];
-    this.query = 'starttime='+ this.yesterday + '&endtime=' + this.today + '&minmagnitude=' + this.magnitude;
-    this.httpClient.get(this.url+this.query+'&orderby=magnitude')
+    this.eqService.getYesterdayEqs()
     .subscribe(
       (data:any[]) => {
         data = data['features'];
@@ -49,9 +46,7 @@ export class HomeComponent implements OnInit {
         }            
       }
     )
-    this.query = 'starttime='+ this.begMonth + '&endtime=' + this.today + '&minmagnitude=5&orderby=magnitude';
-    console.log(this.query);
-    this.httpClient.get(this.url+this.query)
+    this.eqService.getLast30GreaterThan5()
     .subscribe(
       (data:any[]) =>{
         data = data['features'];

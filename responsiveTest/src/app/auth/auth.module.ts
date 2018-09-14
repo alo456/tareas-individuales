@@ -9,6 +9,8 @@ import { SharedRoutingModule } from 'src/app/shared/shared-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AgmCoreModule } from '@agm/core';
+import {MatCardModule, MatCard} from '@angular/material/card';
+
 
 @NgModule({
   imports: [
@@ -17,6 +19,7 @@ import { AgmCoreModule } from '@agm/core';
     SharedRoutingModule,
     ReactiveFormsModule,
     NgxPaginationModule,
+    MatCardModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDk07aGoXNk2JpxvarPSgN1hIGA5JwZpMU'
     })
@@ -24,6 +27,7 @@ import { AgmCoreModule } from '@agm/core';
   exports:[
     AuthRoutingModule
   ],
+  providers: [],
   declarations: [HomeComponent, ServicesComponent, ContactComponent]
 })
 export class AuthModule { }

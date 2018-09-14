@@ -2,23 +2,27 @@
     <div class="form-container">
         <div class="row columns">
             <h1>Busca Sismos</h1>
-            <label>Magnitud Mínima
-              <input type="number" class="form-control" formControlName="Magnitud">
-            </label>
+            <h3>Magnitud Mínima</h3>
+              <mat-card  class="example-card">  
+                <input type="number" class="form-control" formControlName="Magnitud" size="2">
+              </mat-card>
             <div class="alert" *ngIf="!eqForm.controls['Magnitud'].valid && eqForm.controls['Magnitud'].touched">
               Magnitud Mínima requerida
             </div>
+            <h3> Desde</h3>
+            <mat-card  class="example-card">
+                <input type="date"  max={{tomorrow}} formControlName="Inicio">
+            </mat-card>
+              
 
-            <label>Desde 
-              <input type="date"  formControlName="Inicio">
-            </label>
             <div class="alert" *ngIf="!eqForm.controls['Inicio'].valid && eqForm.controls['Inicio'].touched">
               Fecha de Inicio requerida
             </div>
 
-            <label>Hasta
-              <input type="date"  formControlName="Fin">
-            </label>    
+            <h3>Hasta</h3>
+            <mat-card  class="example-card">
+              <input type="date" max={{tomorrow}}  formControlName="Fin">
+            </mat-card>  
             <div class="alert" *ngIf="!eqForm.controls['Fin'].valid && eqForm.controls['Fin'].touched">
               Fecha Final requerida
             </div>

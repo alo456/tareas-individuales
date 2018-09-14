@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { EqUsgsService } from 'src/app/eq-service/eq-usgs.service';
 import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
+;
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -12,17 +13,19 @@ export class ServicesComponent implements OnInit {
   mag:number;
   startDate:string='';
   endDate:string='';
-  url:string = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&';
   eqs:any[];
   found:boolean = false;
   query:string='';
   message:string='';
 
-
+  
   latitude:number = 17.0654200;
   longitude:number = -96.7236500;
 
-  constructor(private fb: FormBuilder,private httpClient:HttpClient) { 
+  today:string =this.eqService.today;
+  tomorrow:string=this.eqService.tomorrow;
+
+  constructor(private fb: FormBuilder,private eqService:EqUsgsService) { 
     this.buildForm();
   }
   
@@ -57,9 +60,8 @@ export class ServicesComponent implements OnInit {
     this.found = false;
     this.eqs=[];
     this.message = '';
-    this.query = 'starttime='+ this.startDate + '&endtime=' + this.endDate + '&minmagnitude=' + this.mag;
     //console.log(this.query);
-    this.httpClient.get(this.url+this.query+'&orderby=magnitude')
+    this.eqService.getCustomSearch(this.startDate, this.endDate, this.mag)
     .subscribe(
       (data:any[]) => {
         data = data['features'];
@@ -72,5 +74,6 @@ export class ServicesComponent implements OnInit {
       }
     )
   }
+
 
 }
